@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SiTe - Acceso</title>
+
+<style>
+
+body {
+
+  background: #f3eee3;
+
+  color: #315b49;
+
+  font-family: Arial, sans-serif;
+
+  padding: 25px;
+
+}
+
+main {
+
+  max-width: 500px;
+
+  margin: auto;
+
+  background: #fffdf8;
+
+  padding: 25px;
+
+  border-radius: 18px;
+
+}
+
+h1 { color: #315b49; }
+
+label {
+
+  display: block;
+
+  margin-top: 16px;
+
+}
+
+input {
+
+  width: 100%;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #b9c6bc;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+}
+
+button {
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin-top: 15px;
+
+  background: #315b49;
+
+  color: white;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  font-size: 16px;
+
+}
+
+#mensaje { white-space: pre-wrap; }
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<h1>SiTe</h1>
+
+<p>Un espacio para escribir, compartir y conversar con respeto.</p>
+
+<h2>Crear una cuenta</h2>
+
+<label>Correo electrónico</label>
+
+<input id="email" type="email">
+
+<label>Contraseña</label>
+
+<input id="password" type="password">
+
+<button id="registro">Crear cuenta</button>
+
+<button id="entrar">Ya tengo una cuenta</button>
+
+<p id="mensaje"></p>
+
+<details>
+
+<summary>Configuración de conexión</summary>
+
+<label>Clave Publishable de Supabase</label>
+
+<input id="clave" type="password">
+
+</details>
+
+<p>Versión de prueba de SiTe.</p>
+
+</main>
+
+<script type="module">
+
+import { createClient } from
+
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const url = 'https://yayccluspgbxltlpfmzn.supabase.co';
+
+function conectar() {
+
+  const clave = document.getElementById('clave').value.trim();
+
+  if (!clave) {
+
+    document.getElementById('mensaje').textContent =
+
+      'Introduce la clave Publishable en Configuración.';
+
+    return null;
+
+  }
+
+  return createClient(url, clave);
+
+}
+
+document.getElementById('registro').onclick = async () => {
+
+  const supabase = conectar();
+
+  if (!supabase) return;
+
+  const email = document.getElementById('email').value.trim();
+
+  const password = document.getElementById('password').value;
+
+  if (!email || password.length < 6) {
+
+    document.getElementById('mensaje').textContent =
+
+      'Escribe un correo y una contraseña de al menos 6 caracteres.';
+
+    return;
+
+  }
+
+  const { error } = await supabase.auth.signUp({
+
+    email, password
+
+  });
+
+  document.getElementById('mensaje').textContent =
+
+    error ? error.message :
+
+    'Solicitud enviada. Revisa tu correo si se requiere confirmación.';
+
+};
+
+document.getElementById('entrar').onclick = async () => {
+
+  const supabase = conectar();
+
+  if (!supabase) return;
+
+  const email = document.getElementById('email').value.trim();
+
+  const password = document.getElementById('password').value;
+
+  const { error } = await supabase.auth.signInWithPassword({
+
+    email, password
+
+  });
+
+  document.getElementById('mensaje').textContent =
+
+    error ? error.message : 'Sesión iniciada correctamente.';
+
+};
+
+</script>
+
+</body>
+
+</html>
