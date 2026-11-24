@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SiTe - Cómo participar</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #f5f1eb;
+
+      color: #35413d;
+
+      text-align: center;
+
+      padding: 30px 20px;
+
+    }
+
+    .caja {
+
+      max-width: 420px;
+
+      margin: 35px auto;
+
+      padding: 25px;
+
+      background: white;
+
+      border-radius: 16px;
+
+    }
+
+    .opcion {
+
+      display: block;
+
+      text-align: left;
+
+      padding: 16px;
+
+      margin: 14px 0;
+
+      border: 1px solid #78968a;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+    }
+
+    button {
+
+      width: 100%;
+
+      padding: 14px;
+
+      margin-top: 20px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: #78968a;
+
+      color: white;
+
+      font-size: 16px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="caja">
+
+    <h1>SiTe</h1>
+
+    <h2>¿Cómo te gustaría participar?</h2>
+
+    <p>No tienes que contar nada si todavía no te apetece.</p>
+
+    <label class="opcion">
+
+      <input type="radio" name="modo" value="hablar">
+
+      Quiero hablar y compartir lo que siento.
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="radio" name="modo" value="escuchar">
+
+      Prefiero escuchar y acompañar.
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="radio" name="modo" value="ambas">
+
+      Quiero hablar y escuchar.
+
+    </label>
+
+    <button onclick="continuar()">Continuar</button>
+
+    <p id="mensaje"></p>
+
+  </div>
+
+  <script>
+
+    function continuar() {
+
+      const seleccion = document.querySelector(
+
+        'input[name="modo"]:checked'
+
+      );
+
+      if (!seleccion) {
+
+        document.getElementById('mensaje').textContent =
+
+          'Elige cómo te gustaría participar.';
+
+        return;
+
+      }
+
+      sessionStorage.setItem('modoParticipacion', seleccion.value);
+
+      window.location.href = 'temas.html';
+
+    }
+
+  </script>
+
+</body>
+
+</html>
