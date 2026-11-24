@@ -204,10 +204,15 @@ document.getElementById('entrar').onclick = async () => {
 
   });
 
-  document.getElementById('mensaje').textContent =
+  if (error) {
 
-    error ? error.message : 'Sesión iniciada correctamente.';
+  document.getElementById('mensaje').textContent = error.message;
 
+} else {
+
+  window.location.href = 'edad.html';
+
+}
 };
 
 </script>
