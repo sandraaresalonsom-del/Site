@@ -1,150 +1,96 @@
-(<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="es">
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SiTe - Un espacio para ti</title>
+<title>SiTe - Un espacio para ti</title>
 
-  <style>
+<style>
 
-    body {
+body {
 
-      margin: 0;
+  margin: 0;
 
-      font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 
-      background: #f5f1eb;
+  background: #f5f1eb;
 
-      color: #35413d;
+  color: #35413d;
 
-    }
+}
 
-    header {
+header {
 
-      background: #78968a;
+  background: #78968a;
 
-      color: white;
+  color: white;
 
-      padding: 35px 20px;
+  padding: 35px 20px;
 
-      text-align: center;
+  text-align: center;
 
-    }
+}
 
-    h1 {
+h1 { font-size: 42px; margin: 0; }
 
-      font-size: 42px;
+main {
 
-      margin: 0;
+  max-width: 500px;
 
-    }
+  margin: 30px auto;
 
-    main {
+  padding: 20px;
 
-      max-width: 650px;
+}
 
-      margin: 35px auto;
+.panel {
 
-      padding: 25px;
+  background: white;
 
-      text-align: center;
+  padding: 25px;
 
-    }
+  border-radius: 18px;
 
-    .panel {
+  text-align: center;
 
-      background: white;
+}
 
-      padding: 25px;
+input, button {
 
-      border-radius: 18px;
+  width: 100%;
 
-      margin-bottom: 20px;
+  box-sizing: border-box;
 
-    }
+  padding: 13px;
 
-    button {
+  margin: 8px 0;
 
-      background: #78968a;
+  border-radius: 10px;
 
-      color: white;
+  font-size: 16px;
 
-      border: none;
+}
 
-      padding: 14px 25px;
+input { border: 1px solid #ccc; }
 
-      border-radius: 12px;
-
-      font-size: 16px;
-
-    }
-
-  </style>
-
-</head>
-
-<body>
-
-<header>
-
-  <h1>SiTe</h1>
-
-  <p>Un espacio para ti</p>
-
-</header>
-
-<main>
-
-  https://github.com/sandraaresalonsom-del/Site
-  <div class="panel">
-
-    <h2>Este espacio es tuyo</h2>
-
-    <p>Aquí todas las personas merecen respeto, comprensión y tranquilidad.</p>
-
-<button onclick="window.location.href='registro.html'">Comenzar</button>
-
-<div id="espacio-escritura" style="display:none; margin-top:20px;">
-
-  <h3>Te escuchamos</h3>
-
-  <p>Escribe lo que quieras compartir contigo mismo.</p>
-
-  <textarea
-
-    placeholder="Este espacio es para ti..."
-
-    rows="6"
-
-    style="width:100%; padding:12px; border-radius:10px; box-sizing:border-box;">
-
-  </textarea>
-
-</div>  </const SUPABASE_KEY = sb_publishable_XkVfHTjGqGwLXL_SQS-isQ_FX5jSP4Rdiv>
-
-</main>
 button {
 
-      background: #78968a;
+  background: #78968a;
 
-      color: white;
+  color: white;
 
-      border: none;
+  border: none;
 
-      padding: 14px 25px;
+}
 
-      border-radius: 12px;
+#mensaje { margin-top: 15px; }
 
-      font-size: 16px;
-
-    }
-
-  </style>
+</style>
 
 </head>
 
@@ -160,34 +106,30 @@ button {
 
 <main>
 
-  https://github.com/sandraaresalonsom-del/Site
   <div class="panel">
 
-    <h2>Este espacio es tuyo</h2>
+    <h2>Bienvenido a SiTe</h2>
 
     <p>Aquí todas las personas merecen respeto, comprensión y tranquilidad.</p>
 
-<button onclick="window.location.href='registro.html'">Comenzar</button>
+    <h3>Crear una cuenta</h3>
 
-<div id="espacio-escritura" style="display:none; margin-top:20px;">
+    <input id="email" type="email" placeholder="Tu correo electrónico">
 
-  <h3>Te escuchamos</h3>
+    <input id="password" type="password" placeholder="Crea una contraseña">
 
-  <p>Escribe lo que quieras compartir contigo mismo.</p>
+    <button onclick="registrar()">Crear cuenta</button>
 
-  <textarea
+    <h3>Ya tengo una cuenta</h3>
 
-    placeholder="Este espacio es para ti..."
+    <button onclick="entrar()">Iniciar sesión</button>
 
-    rows="6"
+    <p id="mensaje"></p>
 
-    style="width:100%; padding:12px; border-radius:10px; box-sizing:border-box;">
-
-  </textarea>
-
-</div>  </const SUPABASE_KEY = sb_publishable_XkVfHTjGqGwLXL_SQS-isQ_FX5jSP4Rdiv>
+  </div>
 
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -195,6 +137,11 @@ button {
 const SUPABASE_URL = "https://yayccluspgbxltlpfmzn.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_XkVfHTjGqGwLXL_SQS-isQ_FX5jSP4R";
+
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabaseClient.auth.signUp({
+";
 
 const supabaseClient = supabase.createClient(
 
@@ -204,13 +151,48 @@ const supabaseClient = supabase.createClient(
 
 );
 
+async function registrar() {
+
+  const email = document.getElementById("email").value;
+
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabaseClient.auth.signUp({
+
+    email,
+
+    password
+
+  });
+
+  document.getElementById("mensaje").textContent =
+
+    error ? error.message : "Revisa tu correo para confirmar la cuenta.";
+
+}
+
+async function entrar() {
+
+  const email = document.getElementById("email").value;
+
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+
+    email,
+
+    password
+
+  });
+
+  document.getElementById("mensaje").textContent =
+
+    error ? error.message : "Has iniciado sesión correctamente.";
+
+}
+
 </script>
 
 </body>
 
 </html>
-
-
-
-
-
