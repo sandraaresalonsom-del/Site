@@ -104,31 +104,6 @@ button {
 
 </header>
 
-<main>
-
-  <div class="panel">
-
-    <h2>Bienvenido a SiTe</h2>
-
-    <p>Aquí todas las personas merecen respeto, comprensión y tranquilidad.</p>
-
-    <h3>Crear una cuenta</h3>
-
-    <input id="email" type="email" placeholder="Tu correo electrónico">
-
-    <input id="password" type="password" placeholder="Crea una contraseña">
-
-    <button onclick="registrar()">Crear cuenta</button>
-
-    <h3>Ya tengo una cuenta</h3>
-
-    <button onclick="entrar()">Iniciar sesión</button>
-
-    <p id="mensaje"></p>
-
-  </div>
-
-</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -147,7 +122,7 @@ const supabaseClient = supabase.createClient(
   SUPABASE_KEY
 
 );
-
+document.getElementById("mensaje").textContent = "SiTe está preparado";
 async function registrar() {
 
   const email = document.getElementById("email").value;
