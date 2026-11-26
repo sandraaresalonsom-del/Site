@@ -163,7 +163,6 @@ const supabaseClient = supabase.createClient(
   SUPABASE_KEY
 
 );
-
 async function registrar() {
 
   const email = document.getElementById("email").value;
@@ -198,11 +197,18 @@ async function entrar() {
 
   });
 
-  document.getElementById("mensaje").textContent =
+  if (error) {
 
-    error ? error.message : "Has iniciado sesión correctamente.";
+    document.getElementById("mensaje").textContent = error.message;
+
+    return;
+
+  }
+
+  window.location.href = "edad.html";
 
 }
+
 
 </script>
 <section id="acceso">
