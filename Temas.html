@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SiTe - Tus temas</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #f5f1eb;
+
+      color: #35413d;
+
+      text-align: center;
+
+      padding: 25px 20px;
+
+    }
+
+    .caja {
+
+      max-width: 420px;
+
+      margin: 25px auto;
+
+      padding: 25px;
+
+      background: white;
+
+      border-radius: 16px;
+
+    }
+
+    .opcion {
+
+      display: block;
+
+      text-align: left;
+
+      padding: 15px;
+
+      margin: 12px 0;
+
+      border: 1px solid #78968a;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+    }
+
+    input {
+
+      margin-right: 10px;
+
+      accent-color: #78968a;
+
+    }
+
+    button {
+
+      width: 100%;
+
+      padding: 14px;
+
+      margin-top: 20px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: #78968a;
+
+      color: white;
+
+      font-size: 16px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="caja">
+
+    <h1>SiTe</h1>
+
+    <h2>¿Qué temas te interesan?</h2>
+
+    <p>Puedes elegir tantos como quieras.</p>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Amor y sentimientos">
+
+      Amor y sentimientos
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Amistad">
+
+      Amistad
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Familia">
+
+      Familia
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Desahogo">
+
+      Desahogo
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Vida y experiencias">
+
+      Vida y experiencias
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Diversión y ocio">
+
+      Diversión y ocio
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Aficiones">
+
+      Aficiones
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Trabajo y estudios">
+
+      Trabajo y estudios
+
+    </label>
+
+    <label class="opcion">
+
+      <input type="checkbox" value="Otros temas">
+
+      Otros temas
+
+    </label>
+
+    <button onclick="continuar()">Continuar</button>
+
+    <p id="mensaje"></p>
+
+  </div>
+
+  <script>
+
+    function continuar() {
+
+      const seleccionados = Array.from(
+
+        document.querySelectorAll(
+
+          'input[type="checkbox"]:checked'
+
+        )
+
+      ).map(c => c.value);
+
+      if (seleccionados.length === 0) {
+
+        document.getElementById('mensaje').textContent =
+
+          'Elige al menos un tema para continuar.';
+
+        return;
+
+      }
+
+      sessionStorage.setItem(
+
+        'temasSeleccionados',
+
+        JSON.stringify(seleccionados)
+
+      );
+
+      window.location.href = 'bienvenida.html';
+
+    }
+
+  </script>
+
+</body>
+
+</html>
