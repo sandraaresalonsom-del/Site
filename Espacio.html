@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SiTe - Tu espacio</title>
+
+  <style>
+
+    body {
+
+      margin: 0;
+
+      font-family: Arial, sans-serif;
+
+      background: #f5f1eb;
+
+      color: #35413d;
+
+      padding: 20px;
+
+    }
+
+    header {
+
+      text-align: center;
+
+      padding: 15px;
+
+    }
+
+    h1 {
+
+      color: #78968a;
+
+      font-size: 34px;
+
+    }
+
+    .caja {
+
+      max-width: 550px;
+
+      margin: 20px auto;
+
+      padding: 25px;
+
+      background: white;
+
+      border-radius: 16px;
+
+    }
+
+    textarea {
+
+      width: 100%;
+
+      box-sizing: border-box;
+
+      min-height: 180px;
+
+      padding: 15px;
+
+      border: 1px solid #78968a;
+
+      border-radius: 10px;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 16px;
+
+      resize: vertical;
+
+    }
+
+    button {
+
+      width: 100%;
+
+      padding: 15px;
+
+      margin-top: 15px;
+
+      border: none;
+
+      border-radius: 9px;
+
+      background: #78968a;
+
+      color: white;
+
+      font-size: 16px;
+
+    }
+
+    .aviso {
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+      color: #65736d;
+
+    }
+
+    #mensaje {
+
+      white-space: pre-wrap;
+
+      line-height: 1.6;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <h1>SiTe</h1>
+
+    <p>Un espacio para ti</p>
+
+  </header>
+
+  <div class="caja">
+
+    <h2>Te escuchamos</h2>
+
+    <p>
+
+      ¿Hay algo que quieras compartir?
+
+      Puedes escribir libremente.
+
+    </p>
+
+    <textarea
+
+      id="texto"
+
+      placeholder="Este espacio es para expresarte..."
+
+    ></textarea>
+
+    <p class="aviso">
+
+      Recuerda que puedes expresarte sin miedo a ser juzgado.
+
+      Respeta también las experiencias de los demás.
+
+      Evita compartir datos personales.
+
+    </p>
+
+    <button onclick="guardarTexto()">
+
+      Guardar mi escrito
+
+    </button>
+
+    <p id="mensaje"></p>
+
+  </div>
+
+  <script>
+
+    function guardarTexto() {
+
+      const texto = document.getElementById('texto').value.trim();
+
+      const mensaje = document.getElementById('mensaje');
+
+      if (!texto) {
+
+        mensaje.textContent = 'Escribe algo antes de continuar.';
+
+        return;
+
+      }
+
+      sessionStorage.setItem('miEscrito', texto);
+
+      mensaje.textContent =
+
+        'Tu escrito está guardado temporalmente en este navegador.';
+
+    }
+
+  </script>
+
+</body>
+
+</html>
